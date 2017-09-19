@@ -42,5 +42,5 @@ Use the same file structure and specify when calling the command.
 ## TODO
 
 - help no formato de command line
-- config.json com uma lista de projetos e nao apenas um
-- retornar erro se nao encontrar o projeto no config.
+- clear command do remove temporary dir
+- make file
