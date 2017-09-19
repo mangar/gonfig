@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"project/checking"
+	"project/constants"
 )
 
 type ConfigSetup struct {
@@ -18,7 +19,9 @@ func GetConfig() ConfigSetup {
 	data, _ := ioutil.ReadFile(checking.ConfigFilePath())
 	json.Unmarshal([]byte(data), &Config)
 
-	fmt.Println("Config:", Config)
+	if constants.FlagDebug {
+		fmt.Println("Config:", Config)
+	}
 
 	return Config
 }

@@ -3,11 +3,15 @@ package checking
 import (
 	"fmt"
 	"os"
+	"os/exec"
 	"os/user"
+	"project/constants"
 )
 
 func InitialChecking() {
 	checkConfigDir()
+	CreateTempDir("")
+	DeleteAndCreateTempDir(constants.ProjectName)
 }
 
 func checkConfigDir() {
@@ -53,4 +57,35 @@ func printHelp() {
  */
 func ConfigFilePath() string {
 	return HomeDir() + "/.gonfig/config.json"
+}
+
+func DeleteAndCreateTempDir(project string) {
+
+	tempDir := HomeDir() + "/.gonfig/temp/" + project
+	if constants.FlagDebug {
+		fmt.Println("Cleanning temporary dir @", tempDir)
+	}
+
+	if err := exec.Command("sh", "-c", "rm -rf "+tempDir).Run(); err != nil {
+		if constants.FlagDebug {
+			fmt.Printf("Error removing build directory: %s\n", err)
+		}
+	}
+
+	CreateTempDir(project)
+}
+
+func CreateTempDir(project string) {
+
+	tempDir := HomeDir() + "/.gonfig/temp/" + project
+
+	_, err := os.Stat(tempDir)
+	if os.IsNotExist(err) {
+		if constants.FlagDebug {
+			fmt.Println("Creating temp dir @", tempDir)
+		}
+		os.MkdirAll(tempDir, os.ModePerm)
+	}
+
+	// return HomeDir() + "/.gonfig/temp" + project
 }
