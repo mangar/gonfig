@@ -18,12 +18,16 @@ First export a ENV variable: ```export FlagDebug=true``` and then run the progra
 
 __1__
 
-You can create a config.yml file located at: ```~/.gonfig/config.yml``` and put the and complete that with: 
+You can create a config.yml file located at: ```~/.gonfig/config.json``` and put the and complete that with: 
 
 ```
 
-skol_circles:
-  key: ""
+[
+  {
+    "project":"ProjectName",
+    "repo" : "https://USERNAME:APP_PASSWORD@bitbucket.org/REPOSITORY_NAME.git"
+  }
+]
   
 ```
 
