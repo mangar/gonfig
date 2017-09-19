@@ -1,4 +1,4 @@
-package config
+package checking
 
 import (
 	"fmt"
@@ -18,7 +18,7 @@ func checkConfigDir() {
 		panic("The ~/.gonfig dir does not exist")
 	}
 
-	file := HomeDir() + "/.gonfig/config.json"
+	file := ConfigFilePath()
 	_, err2 := os.Stat(file)
 	if os.IsNotExist(err2) {
 		panic("The ~/.gonfig/config.yml file does not exist")
@@ -46,4 +46,11 @@ func HomeDir() string {
 func printHelp() {
 	fmt.Println("HELP")
 	os.Exit(1)
+}
+
+/**
+ * Returns the Config file path (~/.gonfig/config.json)
+ */
+func ConfigFilePath() string {
+	return HomeDir() + "/.gonfig/config.json"
 }

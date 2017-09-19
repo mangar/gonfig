@@ -1,16 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"project/checking"
 	"project/config"
 )
 
-var ConfigSetup = config.ConfigSetup{}
-
 func main() {
 
-	config.InitialChecking()
-	ConfigSetup := config.GetConfig()
+	checking.InitialChecking()
+	config.GetConfig()
 
-	fmt.Println("ConfigSetup:", ConfigSetup)
 }
