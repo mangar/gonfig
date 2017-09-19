@@ -3,14 +3,24 @@
 Get the config from a private repoository.
 
 
+## Usage
+
+    go run main.go projectDemo ./ microservices/all/development microservices/users/development
+
+
+
+
 ## Extra packages
 
-  go get gopkg.in/kyokomi/emoji.v1
+    go get gopkg.in/kyokomi/emoji.v1
+
+
 
 
 ## Debug mode
 
 First export a ENV variable: ```export FlagDebug=true``` and then run the program
+
 
 
 
@@ -43,4 +53,4 @@ Use the same file structure and specify when calling the command.
 
 - help no formato de command line
 - clear command do remove temporary dir
-- make file
+- makefile
