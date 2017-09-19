@@ -1,0 +1,6 @@
+src/github.com
+src/golang.org
+src/sourcegraph.com
+bin
+pkg
+.vscode
