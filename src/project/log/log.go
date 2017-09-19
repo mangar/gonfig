@@ -26,7 +26,7 @@ func LogGit(message string) {
 }
 
 func LogSuccess(message string) {
-	newMessage := emoji.Sprint(message, " Enjoy! "+constants.DoneOKEmoji[rand.Intn(len(constants.DoneOKEmoji))])
+	newMessage := emoji.Sprint(message, "\nEnjoy! "+constants.DoneOKEmoji[rand.Intn(len(constants.DoneOKEmoji))])
 	fmt.Println(newMessage)
 }
 
