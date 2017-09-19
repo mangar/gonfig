@@ -6,6 +6,8 @@ import (
 	"project/checking"
 	"project/config"
 	"project/constants"
+	"project/content"
+	"project/log"
 )
 
 func main() {
@@ -26,17 +28,13 @@ func main() {
 		constants.ProjectName = os.Args[1]
 		constants.Output = os.Args[2]
 
-		if constants.FlagDebug {
-			fmt.Println("Project Name:", constants.ProjectName)
-			fmt.Println("Output:", constants.Output)
-			fmt.Println("Content:")
-		}
+		log.LogDebug("Project Name: " + constants.ProjectName)
+		log.LogDebug("Output: " + constants.Output)
+		log.LogDebug("Content:")
 
 		for i, dir := range os.Args {
 			if i > 2 {
-				if constants.FlagDebug {
-					fmt.Println(" -", dir)
-				}
+				log.LogDebug(" -" + dir)
 				constants.Directories = append(constants.Directories, dir)
 			}
 		}
@@ -45,5 +43,14 @@ func main() {
 
 	checking.InitialChecking()
 	config.GetConfig()
+
+	if content.GitClone() {
+		log.LogDebug("Content cloned!")
+		if content.DistributeContent() {
+			log.LogSuccess("Content Distributed")
+		} else {
+			log.LogError("Ups... found some problem distributing the content.")
+		}
+	}
 
 }

@@ -2,10 +2,9 @@ package config
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"project/checking"
-	"project/constants"
+	"project/log"
 )
 
 type ConfigSetup struct {
@@ -19,9 +18,7 @@ func GetConfig() ConfigSetup {
 	data, _ := ioutil.ReadFile(checking.ConfigFilePath())
 	json.Unmarshal([]byte(data), &Config)
 
-	if constants.FlagDebug {
-		fmt.Println("Config:", Config)
-	}
+	log.LogDebug("Config: " + Config.Project + " / " + Config.Repo)
 
 	return Config
 }

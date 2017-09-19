@@ -4,3 +4,4 @@ src/sourcegraph.com
 bin
 pkg
 .vscode
+output

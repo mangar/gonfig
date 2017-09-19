@@ -2,13 +2,18 @@ package checking
 
 import (
 	"fmt"
+	"math/rand"
 	"os"
 	"os/exec"
 	"os/user"
 	"project/constants"
+	"project/log"
+	"time"
 )
 
 func InitialChecking() {
+	rand.Seed(time.Now().Unix())
+
 	checkConfigDir()
 	CreateTempDir("")
 	DeleteAndCreateTempDir(constants.ProjectName)
@@ -19,13 +24,15 @@ func checkConfigDir() {
 
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
-		panic("The ~/.gonfig dir does not exist")
+		log.LogError("The ~/.gonfig dir does not exist")
+		os.Exit(1)
 	}
 
 	file := ConfigFilePath()
 	_, err2 := os.Stat(file)
 	if os.IsNotExist(err2) {
-		panic("The ~/.gonfig/config.yml file does not exist")
+		log.LogError("The ~/.gonfig/config.yml file does not exist")
+		os.Exit(1)
 	}
 
 }
@@ -59,33 +66,31 @@ func ConfigFilePath() string {
 	return HomeDir() + "/.gonfig/config.json"
 }
 
+/**
+ *
+ */
 func DeleteAndCreateTempDir(project string) {
 
 	tempDir := HomeDir() + "/.gonfig/temp/" + project
-	if constants.FlagDebug {
-		fmt.Println("Cleanning temporary dir @", tempDir)
-	}
+	log.LogDebug("Cleanning temporary dir @" + tempDir)
 
 	if err := exec.Command("sh", "-c", "rm -rf "+tempDir).Run(); err != nil {
-		if constants.FlagDebug {
-			fmt.Printf("Error removing build directory: %s\n", err)
-		}
+		log.LogError("Error removing build directory")
 	}
 
 	CreateTempDir(project)
 }
 
+/**
+ *
+ */
 func CreateTempDir(project string) {
 
 	tempDir := HomeDir() + "/.gonfig/temp/" + project
 
 	_, err := os.Stat(tempDir)
 	if os.IsNotExist(err) {
-		if constants.FlagDebug {
-			fmt.Println("Creating temp dir @", tempDir)
-		}
+		log.LogDebug("Creating temp dir @" + tempDir)
 		os.MkdirAll(tempDir, os.ModePerm)
 	}
-
-	// return HomeDir() + "/.gonfig/temp" + project
 }
