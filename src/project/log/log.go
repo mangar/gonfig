@@ -34,3 +34,8 @@ func Log(message string) {
 	newMessage := emoji.Sprint(":point_right: ", message)
 	fmt.Println(newMessage)
 }
+
+func LogClean(message string) {
+	newMessage := emoji.Sprint(":fire: ", message)
+	fmt.Println(newMessage)
+}

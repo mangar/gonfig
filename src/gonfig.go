@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"project/checking"
+	"project/cmd"
 	"project/config"
 	"project/constants"
 	"project/content"
@@ -17,7 +18,20 @@ func main() {
 		fmt.Println("Debug mode enabled")
 	}
 
-	if len(os.Args) < 3 {
+	if len(os.Args) == 2 {
+
+		if os.Args[1] == "help" {
+			cmd.Help()
+
+		} else if os.Args[1] == "clear" {
+			cmd.Clear()
+
+		} else {
+			log.LogError("Command not found")
+
+		}
+
+	} else if len(os.Args) < 3 {
 		fmt.Println("Inform the (1)project name, (2) destination and the (3) diretories to be downloaded")
 		fmt.Println("Ex.:")
 		fmt.Println("go run main.go projectDemo ./ microservices/all/development microservices/users/development")
@@ -39,18 +53,18 @@ func main() {
 			}
 		}
 
-	}
+		checking.InitialChecking()
+		config.GetConfig()
 
-	checking.InitialChecking()
-	config.GetConfig()
-
-	if content.GitClone() {
-		log.LogDebug("Content cloned!")
-		if content.DistributeContent() {
-			log.LogSuccess("Content Distributed")
-		} else {
-			log.LogError("Ups... found some problem distributing the content.")
+		if content.GitClone() {
+			log.LogDebug("Content cloned!")
+			if content.DistributeContent() {
+				log.LogSuccess("Content Distributed")
+			} else {
+				log.LogError("Ups... found some problem distributing the content.")
+			}
 		}
+
 	}
 
 }
