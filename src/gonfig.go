@@ -9,6 +9,14 @@ import (
 	"project/constants"
 	"project/content"
 	"project/log"
+
+	emoji "gopkg.in/kyokomi/emoji.v1"
+)
+
+var (
+	Version string
+	Build   string
+	Hash    string
 )
 
 func main() {
@@ -23,8 +31,11 @@ func main() {
 		if os.Args[1] == "help" {
 			cmd.Help()
 
-		} else if os.Args[1] == "clear" {
+		} else if os.Args[1] == "clear" || os.Args[1] == "clean" {
 			cmd.Clear()
+
+		} else if os.Args[1] == "version" {
+			printVersion()
 
 		} else {
 			log.LogError("Command not found")
@@ -66,5 +77,11 @@ func main() {
 		}
 
 	}
+
+}
+
+func printVersion() {
+	out := emoji.Sprint(":checkered_flag: Version: ", Version, "\n:clock2: Build Time: ", Build)
+	fmt.Println(out)
 
 }

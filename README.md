@@ -5,9 +5,13 @@ Get the config from a private repoository.
 
 ## Usage
 
-    go run main.go projectDemo ./ microservices/all/development microservices/users/development
+    go run main.go projectDemo ../output microservices/all/development microservices/users/development
 
 
+## Making
+
+    make
+    make install
 
 
 ## Extra packages
@@ -48,9 +52,4 @@ Use the same file structure and specify when calling the command.
 
 
 
-
 ## TODO
-
-- help no formato de command line
-- clear command do remove temporary dir
-- makefile
