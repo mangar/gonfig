@@ -68,3 +68,6 @@ Use the same file structure and specify when calling the command.
 
 
 
+# License
+
+Copyright © 2017 Marcio Mangar. MIT License
