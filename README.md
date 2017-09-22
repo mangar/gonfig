@@ -3,6 +3,22 @@
 Get the config from a private repoository.
 
 
+
+## Simple
+
+  
+- Get the code from git repo
+- Run: ```make``` and ```make install```
+- type: ```gonfig install```
+	- this will create the ```~/.gonfig``` dir and a basic ```config.json```
+- Enjoy
+
+Any question, type: ```gonfig help```
+
+
+
+
+
 ## Usage
 
     go run main.go projectDemo ../output microservices/all/development microservices/users/development
@@ -52,4 +68,3 @@ Use the same file structure and specify when calling the command.
 
 
 
-## TODO

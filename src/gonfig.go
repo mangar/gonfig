@@ -34,6 +34,9 @@ func main() {
 		} else if os.Args[1] == "clear" || os.Args[1] == "clean" {
 			cmd.Clear()
 
+		} else if os.Args[1] == "install" {
+			cmd.Install()
+
 		} else if os.Args[1] == "version" {
 			printVersion()
 

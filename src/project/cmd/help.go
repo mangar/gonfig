@@ -16,6 +16,7 @@ func Help() {
 	fmt.Println("options:")
 	fmt.Println(" clear    perform the cleaning on temporary dir. The temporary dir is located at ~/.gonfig/ ")
 	fmt.Println(" help     show this content")
+	fmt.Println(" install  create the basic structure for configruation: ~/.gonfig dir and the config.json basic file")
 	fmt.Println(" version  display the version and build time")
 	fmt.Println("")
 

@@ -7,7 +7,7 @@
 BINARY=gonfig
 
 # 
-VERSION=1.0.0
+VERSION=1.1.0
 BUILD=`date +%FT%T%z`
 HASH=`date +%FT%T%z`
 
